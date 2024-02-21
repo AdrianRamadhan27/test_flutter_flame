@@ -21,3 +21,12 @@ jobs:
       - run: flutter test
       - run: flutter build apk
       - run: flutter build appbundle
+      - name: Release
+          uses: svenstaro/upload-release-action@v2
+          with:
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            file: build/app/outputs/flutter-apk/app-release.apk
+            asset_name: talacare.apk
+            tag: latest
+            overwrite: true
+            body: "TalaCare Mobile - version: 1.0"
